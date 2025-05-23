@@ -7,6 +7,13 @@ from firebase_admin import credentials, firestore, auth
 from streamlit import navigation, Page
 
 
+
+if "FIREBASE" not in st.secrets:
+    st.error("FIREBASE config not found in secrets. Please update secrets.toml or Streamlit Cloud secrets.")
+    st.stop()
+
+firebase_config = st.secrets["FIREBASE"]
+
 # Firebase configuration from Streamlit secrets
 firebase_config = {
     "type": st.secrets.FIREBASE.type,
